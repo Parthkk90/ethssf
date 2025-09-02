@@ -28,14 +28,14 @@ function classNames(...classes: string[]) {
 export default function Navbar() {
   const { address, isConnected } = useAccount();
   return (
-    <Disclosure as="nav" className="bg-white">
+    <Disclosure as="nav" className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 shadow-lg">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
-                <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-white hover:bg-opacity-20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-all duration-300">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -61,9 +61,9 @@ export default function Navbar() {
                             }
                             className={classNames(
                               isCurrent
-                                ? " font-bold uppercase text-black"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
+                                ? "font-bold text-white text-xl tracking-wide"
+                                : "text-blue-100 hover:bg-white hover:bg-opacity-20 hover:text-white",
+                              "rounded-xl px-4 py-2 font-medium transition-all duration-300"
                             )}
                             aria-current={isCurrent ? "page" : undefined}
                           >
@@ -74,17 +74,23 @@ export default function Navbar() {
                     </>
                   </div>
                 </div>
+                {/* Mobile title */}
+                <div className="flex sm:hidden items-center justify-center flex-1">
+                  <span className="text-white font-bold text-lg">CirclePay ⛽️</span>
+                </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
-                  {isConnected ? <ConnectButton /> : <ConnectButton />}
+                  <div className="transform transition-transform duration-300 hover:scale-105">
+                    {isConnected ? <ConnectButton /> : <ConnectButton />}
+                  </div>
                 </Menu>
               </div>
             </div>
           </div>
 
-          <DisclosurePanel className="sm:hidden">
+          <DisclosurePanel className="sm:hidden bg-white bg-opacity-10 backdrop-blur-sm">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <DisclosureButton
@@ -93,9 +99,9 @@ export default function Navbar() {
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
+                      ? "bg-white bg-opacity-20 text-white font-bold"
+                      : "text-blue-100 hover:bg-white hover:bg-opacity-20 hover:text-white",
+                    "block rounded-lg px-3 py-2 text-base font-medium transition-all duration-300"
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >

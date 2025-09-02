@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Navbar from "../components/Navbar/Navbar";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./globals.css";
 
 import { Providers } from "../app/Providers";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "CirclePay ⛽️",
@@ -20,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="font-sans antialiased">
         <Providers>
           <Navbar />
           {children}

@@ -217,7 +217,7 @@ export default function NewPostTab() {
                 <Wallet className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full pl-10 pr-3 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-300"
                   value={from}
                   onChange={(e) => setFrom(e.target.value)}
                   placeholder="0x..."
@@ -232,7 +232,7 @@ export default function NewPostTab() {
                 <Wallet className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full pl-10 pr-3 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-300"
                   value={to}
                   onChange={(e) => setTo(e.target.value)}
                   placeholder="0x..."
@@ -255,16 +255,16 @@ export default function NewPostTab() {
               <label className="block text-sm font-medium text-gray-700">
                 Amount (USDC)
               </label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2 rounded-xl shadow-sm">
                 <input
                   type="number"
-                  className="w-full pl-3 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full pl-3 pr-16 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-300 text-lg font-medium"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                   placeholder="0.00"
                 />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                  <span className="text-gray-500 sm:text-sm">USDC</span>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-4">
+                  <span className="text-blue-600 font-bold text-lg">USDC</span>
                 </div>
               </div>
             </div>
@@ -391,19 +391,21 @@ export default function NewPostTab() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-50 via-sky-50 to-indigo-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-xl shadow-xl overflow-hidden">
-          <div className="px-6 py-8">
-            <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4">
+            <div className="text-center">
+              <h1 className="text-3xl font-bold text-white">
                 Send USDC, Skip the Gas! ⛽️
               </h1>
-              <p className="mt-2 text-gray-600">
+              <p className="mt-2 text-blue-100">
                 Let someone else handle the heavy lifting while you make the
-                magic happen
+                magic happen ✨
               </p>
             </div>
+          </div>
+          <div className="px-6 py-8">
 
             {/* Progress Steps */}
             <div className="mb-8">
@@ -411,18 +413,18 @@ export default function NewPostTab() {
                 {steps.map((step, index) => (
                   <div key={step.number} className="flex items-center">
                     <div
-                      className={`flex items-center justify-center w-8 h-8 rounded-full ${
+                      className={`flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold shadow-lg transition-all duration-300 ${
                         activeStep >= step.number
-                          ? "bg-indigo-600 text-white"
-                          : "bg-gray-200 text-gray-600"
+                          ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white scale-110"
+                          : "bg-gray-200 text-gray-600 hover:bg-gray-300"
                       }`}
                     >
                       {step.number}
                     </div>
                     <span
-                      className={`ml-2 text-sm hidden sm:block ${
+                      className={`ml-2 text-sm font-medium hidden sm:block transition-colors duration-300 ${
                         activeStep >= step.number
-                          ? "text-indigo-600"
+                          ? "text-blue-600"
                           : "text-gray-500"
                       }`}
                     >
@@ -430,9 +432,9 @@ export default function NewPostTab() {
                     </span>
                     {index < steps.length - 1 && (
                       <div
-                        className={`h-0.5 w-12 mx-2 ${
+                        className={`h-1 w-12 mx-2 rounded-full transition-all duration-300 ${
                           activeStep > step.number
-                            ? "bg-indigo-600"
+                            ? "bg-gradient-to-r from-blue-500 to-purple-600"
                             : "bg-gray-200"
                         }`}
                       />
@@ -450,7 +452,7 @@ export default function NewPostTab() {
               {activeStep > 1 && (
                 <button
                   onClick={() => setActiveStep(activeStep - 1)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                  className="px-6 py-3 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50 hover:border-gray-300 font-medium transition-all duration-300"
                 >
                   Back
                 </button>
@@ -458,7 +460,7 @@ export default function NewPostTab() {
               {activeStep < 4 ? (
                 <button
                   onClick={handleNextStep}
-                  className={`ml-auto px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center ${
+                  className={`ml-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 flex items-center font-medium transition-all duration-300 shadow-lg ${
                     ((activeStep === 1 && !isStep1Valid()) ||
                       (activeStep === 2 && !isStep2Valid()) ||
                       (activeStep === 3 && !isStep3Valid())) &&
@@ -477,16 +479,20 @@ export default function NewPostTab() {
               ) : (
                 <button
                   onClick={handleSign}
-                  className={`ml-auto px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center disabled:opacity-50 ${
+                  className={`ml-auto px-8 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-xl hover:from-green-600 hover:to-blue-700 flex items-center font-medium transition-all duration-300 shadow-lg disabled:opacity-50 ${
                     isLoading ? "opacity-75 cursor-not-allowed" : ""
                   }`}
                   disabled={!isConnected || isLoading}
                 >
                   {isLoading ? (
-                    "Loading..."
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white mr-2"></div>
+                      Processing...
+                    </>
                   ) : (
                     <>
-                      <span className="ml-2">Sign Transaction</span>
+                      <Send className="mr-2 h-4 w-4" />
+                      <span>Sign Transaction</span>
                     </>
                   )}
                 </button>
@@ -496,25 +502,27 @@ export default function NewPostTab() {
         </div>
 
         {/* Help Card */}
-        <div className="mt-6 bg-white rounded-lg shadow-md p-6">
+        <div className="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl shadow-lg p-6 border border-blue-100">
           <div className="flex items-start">
-            <Info className="h-5 w-5 text-indigo-500 mt-0.5" />
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-gray-900">
+            <Info className="h-6 w-6 text-blue-600 mt-0.5 flex-shrink-0" />
+            <div className="ml-4">
+              <h3 className="text-lg font-bold text-blue-900">
                 How Does This Magic Work? ✨
               </h3>
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-2 text-blue-700 leading-relaxed">
                 No gas, no stress! We use smart signature tech (
-                <span className="font-bold">EIP-712</span> &{" "}
-                <span className="font-bold">EIP-3009</span>) to let you create
+                <span className="font-bold text-purple-600">EIP-712</span> &{" "}
+                <span className="font-bold text-purple-600">EIP-3009</span>) to let you create
                 USDC transfers that others can power up later. Think of it like
                 sending a pre-approved package - you pack it, someone else
-                delivers it!
+                delivers it! 📦✈️
               </p>
               {!isConnected && (
-                <p className="mt-2 text-sm text-indigo-600">
-                  Please connect your wallet to continue.
-                </p>
+                <div className="mt-3 px-4 py-2 bg-blue-100 rounded-lg border border-blue-200">
+                  <p className="text-sm text-blue-800 font-medium">
+                    🔌 Please connect your wallet to continue.
+                  </p>
+                </div>
               )}
             </div>
           </div>
@@ -522,24 +530,19 @@ export default function NewPostTab() {
 
         {/* Connection Status */}
         {!isConnected && (
-          <div className="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+          <div className="mt-4 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-2 border-yellow-200">
             <div className="flex items-center">
-              <Info className="h-5 w-5 text-yellow-400" />
-              <p className="ml-3 text-sm text-yellow-700">
-                Please connect your wallet to use this feature.
-              </p>
-            </div>
-          </div>
-        )}
-
-        {/* Error Messages */}
-        {!isConnected && (
-          <div className="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
-            <div className="flex items-center">
-              <Info className="h-5 w-5 text-red-400" />
-              <p className="ml-3 text-sm text-red-700">
-                Please connect your wallet first.
-              </p>
+              <div className="flex-shrink-0">
+                <Wallet className="h-6 w-6 text-yellow-600" />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium text-yellow-800">
+                  🔐 Wallet Connection Required
+                </p>
+                <p className="text-sm text-yellow-700 mt-1">
+                  Please connect your wallet to use this feature and start sending gas-free USDC!
+                </p>
+              </div>
             </div>
           </div>
         )}
